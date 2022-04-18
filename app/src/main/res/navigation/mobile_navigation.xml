@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/map_dest">
+    <fragment
+        android:id="@+id/map_dest"
+        android:name="kz.nurkaydarov097.airpvl.fragments.AirMapFragment"
+        android:label="AirMapFragment" >
+        <action
+            android:id="@+id/action_map_dest_to_list_dest"
+            app:destination="@id/list_dest" />
+    </fragment>
+    <fragment
+        android:id="@+id/list_dest"
+        android:name="kz.nurkaydarov097.airpvl.fragments.ListFragment"
+        android:label="ListFragment" />
+    <fragment
+        android:id="@+id/help_dest"
+        android:name="kz.nurkaydarov097.airpvl.fragments.PollutionFragment"
+        android:label="PollutionFragment" />
+</navigation>

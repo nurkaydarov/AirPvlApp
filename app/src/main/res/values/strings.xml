@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">AirPvlApp</string>
+
+    <string name="aqi_status_good">Хороший</string>
+    <string name="aqi_status_moderate">Средний</string>
+    <string name="aqi_status_unhealthyForSensetiveGroups">Плохой</string>
+    <string name="aqi_status_unhealthy">Очень</string>
+    <string name="aqi_status_veryUnhealthy">Опасный!</string>
+    <string name="noInternetConnection">Нет подключения к интернету :(</string>
+    <string name="reload">Reload</string>
+
+    <string name="failed_to_load_users">Ошибка в загрузке данных</string>
+    <string name="try_again">Повторить</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mainPopulant">Главный загрязнитель: %1$s</string>
+    <string name="pollution_indicator_good">Отличный</string>
+    <string name="pollution_numerical_value_good">от 0 до 50</string>
+    <string name="pollution_meaning_good">Качество воздуха считается удолетворительным, и загрязнения воздуха представляется незначительным в пределах норм</string>
+    <string name="pollution_indicator_normal">Средний</string>
+    <string name="pollution_numerical_value_normal">от 51 до 100</string>
+    <string name="pollution_meaning_normal">Качество воздуха является приемлемым, однако некоторые загрязнители могут представлять опасность для людей особых чуствительным к загрязнению</string>
+    <string name="pollution_indicator_bad">Плохой</string>
+    <string name="pollution_numerical_value_bad">от 101 до 150</string>
+    <string name="pollution_meaning_bad">Загрязнение воздуха достигло высокого уровня, он является небезопасным для людей с повышенной чувствительностью. Если вы почувствуете затрудненное дыхание или раздражение горла, сократите время пребывания на улице</string>
+    <string name="pollution_indicator_danger">Вредный</string>
+    <string name="pollution_numerical_value_danger">от 151 до 200</string>
+    <string name="pollution_meaning_danger">Люди с повышенной чувствительностью могут мгновенно почувствовать себя плохо. При продолжительном нахождении на улице здоровые люди могут почувствовать затрудненное дыхание или раздражение горла. Ограничьте пребывание на улице</string>
+    <string name="pollution_indicator_dangerous">Очень вредный</string>
+    <string name="pollution_numerical_value_dangerous">от 201 до 249</string>
+    <string name="pollution_meaning_dangerous">Люди с повышенной чувствительностью могут мгновенно почувствовать себя плохо, им следует избегать пребывания на улице. У здоровых людей могут возникать симптомы затрудненного дыхания или раздражения горла; рекомендуется оставаться в помещении и перенести мероприятия на улице.</string>
+    <string name="pollution_indicator_very_dangerous">Опасно!</string>
+    <string name="pollution_numerical_value_very_dangerous">от 251+</string>
+    <string name="pollution_meaning_very_dangerous">Любое пребывание на улице, даже в течение нескольких минут, может привести к серьезным осложнениям у всех. Старайтесь не выходить на улицу.</string>
+</resources>
