@@ -8,11 +8,8 @@
     >
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         >
-
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/containerContent"
             android:layout_width="match_parent"
@@ -21,17 +18,14 @@
             android:layout_marginEnd="15dp"
             android:layout_marginTop="30dp"
             >
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mainBanner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-
                 android:paddingTop="30dp"
                 android:background="@drawable/bd_round_good"
-                android:clipToOutline="true"
                 app:layout_constraintTop_toTopOf="@id/containerContent"
                 app:layout_constraintStart_toStartOf="@id/containerContent"
                 app:layout_constraintEnd_toEndOf="@id/containerContent"
@@ -42,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Средний индекс AQI"
+                    android:text="@string/middleIndexAqi"
                     android:textSize="24sp"
                     android:textStyle=""
                     android:textColor="@color/white"
@@ -56,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="11"
+                    android:text="@string/defaultAverageAQI"
                     android:textSize="64sp"
                     android:textColor="@color/white"
                     android:textStyle="bold"
@@ -79,10 +73,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/averageIndexAQICountTextView" />
-
-
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,7 +94,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Станция"
+                    android:text="@string/station"
                     android:textSize="24sp"
 
                     android:textColor="@color/black"
@@ -115,7 +105,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AQI"
+                    android:text="@string/aqi"
                     android:textSize="24sp"
                     android:textColor="@color/black"
                     app:layout_constraintTop_toTopOf="@id/headerStationsContainer"
@@ -169,14 +159,12 @@
             android:orientation="vertical"
             android:visibility="gone"
             >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Загрузка..."
+                android:text="@string/loading_text"
                 android:textSize="18sp"
                 />
-
             <ProgressBar
                 android:id="@+id/progressBar"
                 android:layout_width="match_parent"

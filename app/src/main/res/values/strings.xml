@@ -33,4 +33,9 @@
     <string name="pollution_indicator_very_dangerous">Опасно!</string>
     <string name="pollution_numerical_value_very_dangerous">от 251+</string>
     <string name="pollution_meaning_very_dangerous">Любое пребывание на улице, даже в течение нескольких минут, может привести к серьезным осложнениям у всех. Старайтесь не выходить на улицу.</string>
+    <string name="loading_text">Загрузка...</string>
+    <string name="middleIndexAqi">Средний индекс AQI</string>
+    <string name="aqi">AQI</string>
+    <string name="station">Станция</string>
+    <string name="defaultAverageAQI">11</string>
 </resources>

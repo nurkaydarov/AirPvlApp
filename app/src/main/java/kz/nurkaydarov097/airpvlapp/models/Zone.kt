@@ -1,11 +1,7 @@
 package kz.nurkaydarov097.airpvl.models
 
-import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import com.google.android.gms.maps.model.LatLng
-
-
-
 
 data class Zone(
     var id:Int = -1,

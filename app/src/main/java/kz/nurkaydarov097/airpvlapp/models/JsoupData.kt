@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.annotation.DrawableRes
 import com.google.android.gms.maps.model.LatLng
 import kz.nurkaydarov097.airpvlapp.R
+import org.jsoup.Connection
 
 import org.jsoup.nodes.Document
 
@@ -29,7 +30,7 @@ class JsoupData {
     }
 
     fun getDataFromJsoup():MutableList<Zone>{
-        var listData:MutableList<Zone> = mutableListOf<Zone>()
+        val listData:MutableList<Zone> = mutableListOf<Zone>()
 
         var zone: Zone = Zone()
         try{
@@ -43,30 +44,19 @@ class JsoupData {
             @DrawableRes var markerRes:Int = R.drawable.ic_marker_normal
 
             val url:String = "https://www.iqair.com/ru/kazakhstan/pavlodar"
-            val doc = Jsoup.connect(url).ignoreContentType(true).get();
+            val response: Connection.Response = Jsoup.connect(url).ignoreContentType(true)
+                .userAgent("Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0")
+                .referrer("https://www.google.com")
+                .timeout(12000)
+                .followRedirects(true)
+                .execute();
+            val doc = response.parse()
             val table: Elements = doc.select(".ranking__table") // // Создаю массив таблиц
             val stationTable:Elements = table.get(1).children(); // Выбераю втрорую таблицу и ее елементы
             val tbodyStationTable: Element = stationTable.get(1); // Выбераю <tbody>
             val tbodyStationTableSize = tbodyStationTable.childrenSize()
             for(i:Int in 0 until tbodyStationTableSize){
-
-
-                /* for debug
-                var id1:String  = tbodyStationTable.children().get(i).child(0).text()
-                var station1:String = tbodyStationTable.children().get(i).child(1).text()
-                var street1:String = tbodyStationTable.children().get(i).child(1).text()
-                var aqi1:Int = tbodyStationTable.children().get(i).child(2).text().toInt()
-                testArray.add(Zone(id1.toInt(),station1, street1, aqi1))
-                Log.d("AKTAN", testArray.toString())
-
-                id = 0;
-                station = "Нет данных"
-                aqi = -1
-                street = "Нет данных"
-                */
-
                 if(tbodyStationTable.children().get(i).child(1).text().contains("Pavlodar - no.6: st. Zaton"))
-
                 {
                     id = 1
                     station = tbodyStationTable.children().get(i).child(1).text().substring(21)
@@ -77,7 +67,6 @@ class JsoupData {
                     markerId = ""
                     status = getStatus(aqi).toString()
                 }
-
                 else if(tbodyStationTable.children().get(i).child(1).text().contains("Pavlodar - no.7: st. Toraigyrova-Dyusenova"))
                 {
                     id = 2
@@ -122,21 +111,14 @@ class JsoupData {
                     markerId = ""
                     status = getStatus(aqi).toString()
                 }
-
-
-                //Log.d("POINT", listData.toString());
                 listData.add(Zone(id, station, street, aqi, latLng, markerRes, markerId, status))
-
-
             }
         }
         catch(e: IOException)
         {
             e.printStackTrace()
         }
-
         var sortedList:MutableList<Zone> = listData.sortedBy { it.id }.toMutableList()
-        Log.d("SORTED", sortedList.toString());
         return sortedList
     }
 
@@ -172,7 +154,7 @@ class JsoupData {
             in 51..100 -> R.drawable.ic_marker_normal
             in 101..150 ->  R.drawable.ic_marker_bad
             in 151..200 -> R.drawable.ic_marker_danger
-            else ->  R.drawable.ic_marker_danger
+            else ->  R.drawable.ic_marker_dangerous
 
         }
     }
@@ -183,25 +165,8 @@ class JsoupData {
             in 101..150 -> "Плохой"
             in 151..200 -> "Очень Плохой"
             else ->  "Опасный!"
-
         }
     }
 
-    fun caclAQI():Int{
-
-        val items:MutableList<Zone> = getDataFromJsoup();
-        val sizeAqi:Int = items.size;
-        var result:Int = 0;
-        var count:Int = 0;
-
-        for (i:Int in 0 until items.size){
-            count += items.get(i).aqi;
-        }
-
-        result = count / sizeAqi;
-        return result;
-
-
-    }
 
 }

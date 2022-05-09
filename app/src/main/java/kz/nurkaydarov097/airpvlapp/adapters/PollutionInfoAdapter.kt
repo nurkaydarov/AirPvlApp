@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kz.nurkaydarov097.airpvl.models.Air_pollution
 import kz.nurkaydarov097.airpvlapp.R
 
-
-
 class PollutionInfoAdapter(val context: Context, val dataSet:List<Air_pollution>) : RecyclerView.Adapter<PollutionInfoAdapter.PollutionItemViewHolder>()
 {
 

@@ -28,21 +28,10 @@ class MainActivity : AppCompatActivity() {
         val navController: NavController = host.navController
         setupBottomNavMenu(navController)
 
-
         navController.addOnDestinationChangedListener{
                 _, destination, _ ->
-          //  if(destination.id.equals(R.id.list_dest)){
-
-          //  }
         }
 
-        /*  if (savedInstanceState == null)
-          {
-              supportFragmentManager.beginTransaction()
-                  .add(R.id.mainContainer, AirMapFragment())
-                  .commit()
-          }
-          */
         viewModel.init(this)
         //popullantViewModel.init(this)
 
@@ -50,12 +39,6 @@ class MainActivity : AppCompatActivity() {
             Log.d("FetchData", "data - ${it} \n\n")
         })
 
-        /*
-        popullantViewModel.getData().observe(this, {
-            Log.d("Popullant", "popullant - ${it} \n\n")
-        })
-
-         */
     }
 
     private fun setupBottomNavMenu(navController: NavController){

@@ -8,7 +8,6 @@ class DataSource(val context: Context) {
 
     fun getPollutions():List<Air_pollution>{
         return listOf<Air_pollution>(
-
             Air_pollution(1, context.getString(R.string.pollution_indicator_good), context.getString(R.string.pollution_numerical_value_good), context.getString(R.string.pollution_meaning_good), R.drawable.bd_round_good),
             Air_pollution(2,context.getString(R.string.pollution_indicator_normal),context.getString(R.string.pollution_numerical_value_normal) ,context.getString(R.string.pollution_meaning_normal), R.drawable.bg_round_normal),
             Air_pollution(3, context.getString(R.string.pollution_indicator_bad),context.getString(R.string.pollution_numerical_value_bad), context.getString(R.string.pollution_meaning_bad), R.drawable.bg_round_bad ),

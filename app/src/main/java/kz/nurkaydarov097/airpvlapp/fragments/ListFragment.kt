@@ -49,8 +49,8 @@ class ListFragment: Fragment() {
             viewModel.fetchData().observe(viewLifecycleOwner, Observer {
 
                 infoAdapter.setListData(it)
-                binding.loadingContainer?.visibility = INVISIBLE
-                binding.progressBar?.visibility = INVISIBLE
+                binding.loadingContainer.visibility = INVISIBLE
+                binding.progressBar.visibility = INVISIBLE
                 Log.d("MADINA", "SENDED")
             })
 

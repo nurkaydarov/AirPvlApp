@@ -28,7 +28,6 @@ import kz.nurkaydarov097.airpvlapp.R
 import kz.nurkaydarov097.airpvlapp.databinding.FragmentAirMapBinding
 import kz.nurkaydarov097.airpvlapp.utils.CheckInternet
 
-
 class AirMapFragment: Fragment(), OnMapReadyCallback {
 
     private  var _binding: FragmentAirMapBinding? = null
@@ -42,9 +41,6 @@ class AirMapFragment: Fragment(), OnMapReadyCallback {
     private var  mMap: GoogleMap? = null
     private var mapReady = false
     private val binding get() = _binding!!
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,31 +49,30 @@ class AirMapFragment: Fragment(), OnMapReadyCallback {
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentAirMapBinding.inflate(inflater, container, false)
 
-
-        /***/
         val internetConnect = CheckInternet(requireContext())
         if(internetConnect.isConnected()){
+            binding.loadingContainer.visibility = VISIBLE
+            binding.progressBar.visibility = VISIBLE
             viewModel.fetchData().observe(viewLifecycleOwner, Observer{
                     zones ->
                 this.zones = zones
-
-
-                Log.d("SORTED_ASYNC", zones.toString())
                 updateMap()
+                binding.loadingContainer.visibility = INVISIBLE
+                binding.progressBar.visibility = INVISIBLE
             })
+            binding.noInternetContainer.visibility = INVISIBLE
+            binding.mapFragmentContainer.visibility = VISIBLE
         }
         else{
             binding.noInternetContainer.visibility = VISIBLE
             binding.mapFragmentContainer.visibility = INVISIBLE
         }
-
         binding.reloadBtn.setOnClickListener {
 
             if(internetConnect.isConnected()){
                 viewModel.fetchData().observe(viewLifecycleOwner, Observer{
                         zones ->
                     this.zones = zones
-                    Log.d("SORTED_ASYNC", zones.toString())
                     updateMap()
                 })
                 binding.noInternetContainer.visibility = INVISIBLE
@@ -86,15 +81,12 @@ class AirMapFragment: Fragment(), OnMapReadyCallback {
             else{
                 Toast.makeText(requireContext(), getString(R.string.noInternetConnection), Toast.LENGTH_SHORT).show()
             }
-
         }
 
         /**/
 
         /*Иницализация карты*/
-
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-
         mapFragment.getMapAsync (object : OnMapReadyCallback{
             override fun onMapReady(googleMap: GoogleMap) {
                 mMap = googleMap
@@ -103,7 +95,6 @@ class AirMapFragment: Fragment(), OnMapReadyCallback {
 
                 updateMap()
             }
-
         })
 
         /****************/
@@ -136,16 +127,9 @@ class AirMapFragment: Fragment(), OnMapReadyCallback {
    }
 
     private fun updateMap() {
-
-
         mMap?.clear()
-
         if(mapReady && ::zones.isInitialized  )
         {
-
-
-
-
             zones.forEach{
                     zone ->
                 if(zone.latLng != null)
@@ -156,46 +140,26 @@ class AirMapFragment: Fragment(), OnMapReadyCallback {
                     position(lanLng).
                     title(zone.street).
                     icon(bitmapDescriptorFromVector(requireActivity(),zone.markerRes))
-
-
-
                     Log.d("marker_id", zone.markerId)
                     marker = mMap?.addMarker(markerOptions)!!
 
                     // Обновляет id в обьекте на текущий
                     zone.markerId = marker.id // Подсказал Дмитрий Владимиров
-                    for(zone:Zone in zones){
-                        Log.d("Updated", zone.markerId)
-                    }
-                    //markers.add(marker)
-
-
-
+                    ///for(zone:Zone in zones){
+                     //   Log.d("Updated", zone.markerId)
+                   // }
                 }
-
             }
-
-
             mMap?.setOnMarkerClickListener { marker ->
-                Log.d("MarkerAktan", marker.id)
-
-
-
                 for(zone:Zone in zones){
                     if(zone.markerId.equals(marker.id)){
                         showDialog(zone.street, "AQI = " + zone.aqi.toString() + "\nСостояние AQI: " + zone.status)
                     }
                 }
-
                 false
             }
-
-
-
-
-            }
-
         }
+    }
 
 
     private fun showDialog(text:String, message:String){
