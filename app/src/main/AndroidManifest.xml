@@ -15,9 +15,10 @@
         <!-- API-ключ Google для доступа к картам  -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD9QHh9OTYCAu_YHXL0hl1KvDvB6gDJe9o"/>
+            android:value="${MAPS_API_KEY}"/>
 
         <activity
+
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
