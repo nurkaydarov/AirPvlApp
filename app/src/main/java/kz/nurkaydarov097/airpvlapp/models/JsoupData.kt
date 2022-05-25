@@ -132,7 +132,7 @@ class JsoupData {
             val table:Elements = doc.select(".aqi-overview-detail__main-pollution-table")
             val detailTable = table.get(0).children()
             val tbody = detailTable.get(1).children().get(0)
-            val indexAir = tbody.child(1).text().subSequence(0,3).toString().trim()
+            val indexAir = tbody.child(1).text().subSequence(0,2).toString().trim()
             val mainPopulant = tbody.child(2).text()
             Log.d("DETAIL", indexAir)
             information.indexAir  = indexAir
